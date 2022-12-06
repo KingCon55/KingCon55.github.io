@@ -25,6 +25,11 @@ button {
   cursor: pointer;
   width: 100%;
 }
+/* Set a style for all h2 */
+h2 {
+  color: white;
+
+}
 
 button:hover {
   opacity: 0.8;
@@ -51,6 +56,12 @@ img.avatar {
 
 .container {
   padding: 16px;
+}
+
+.menu {
+    position:fixed;
+    top: 400px;
+    left: 60px;
 }
 
 span.psw {
@@ -126,12 +137,19 @@ span.psw {
 </style>
 
 </head>
+
 <body>
 
-<h2>Modal Login Form</h2>
+<div class="container" style="background-color:#282828">
+  <img src="logo_horizontal.svg">
+  <h2></h2>
+  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+  <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Download</button>
+  <button onclick="document.getElementById('id03').style.display='block'" style="width:auto;">FaQ & Documentation</button>
+</div>
+<div id="id05" class="menu">
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
+</div>
 <div id="id01" class="modal">
   
   <form class="modal-content animate" action="/action_page.php" method="post">
