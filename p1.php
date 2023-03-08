@@ -1,24 +1,43 @@
+<html>
+<head>
+
+</head>
+
+
+<body>
+<h1> User Database</h1>
+
+
+
 <?php
-// database connection code
-// $con = mysqli_connect('localhost', 'database_user', 'database_password','database');
+//variables
+$servername = "orion.cs.unh.edu";
+$username = "la1060";
+$password = "Sem=guHp7u";
+$database_in_use = "user_db";
 
-$con = mysqli_connect('localhost', 'root', '','db_contact');
+//create connection
+$mysqli = new mysqli($servername, $username, $password, $database_in_use);
 
-// get the post records
-$txtName = $_POST['txtName'];
-$txtEmail = $_POST['txtEmail'];
-$txtPhone = $_POST['txtPhone'];
-$txtMessage = $_POST['txtMessage'];
-
-// database insert SQL code
-$sql = "INSERT INTO `tbl_contact` (`Id`, `fldName`, `fldEmail`, `fldPhone`, `fldMessage`) VALUES ('0', '$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
-
-// insert in database 
-$rs = mysqli_query($con, $sql);
-
-if($rs)
-{
-	echo "Contact Records Inserted";
+//display values in table one at a time
+if ($mysqli->connect_error) {
+		echo "Failed to connect to MySQL: (" . $mysqli->connect_error . ") " . $mysqli->connect_error;
 }
+echo $mysqli->host_info . "<br>";
 
+$sql = "SELECT uname, creationdate, expirationdate, password FROM user_info";
+$result = $mysqli->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "username: " . $row["uname"]. " creation date: " . $row["creationdate"]. " experation date " . $row["experationdate"]. " Password: " . $row["password"] . "<br>";
+  }
+} else {
+  echo "0 results";
+}
+$mysqli->close();
 ?>
+
+</body>
+</html>
