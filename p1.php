@@ -16,14 +16,15 @@ $username = "la1060";
 $password = "Sem=guHp7u";
 $database_in_use = "user_db";
 
-//create connection
-$mysqli = new mysqli($servername, $username, $password, $database_in_use);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database_in_use);
 
-//display values in table one at a time
-if ($mysqli->connect_errno) {
-	echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
-echo $mysqli->host_info . "<br>";
+echo "Connected successfully";
+
 
 //$sql = "SELECT uname, creationdate, expirationdate, password FROM user_info";
 //$result = $mysqli->query($sql);
