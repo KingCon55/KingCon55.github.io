@@ -40,7 +40,7 @@
 $servername = "localhost";
 $username = "webedit";
 $password = "343Vpnedittable";
-$database_in_use = "user_db";
+$database_in_use = "vpnUsers";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database_in_use);
@@ -55,14 +55,14 @@ echo "Connected successfully". "<br>";
 
 <?php
 //displays current values in table
-$sql = "SELECT uname, creationdate, experationdate, password FROM user_info";
+$sql = "SELECT id, username, email, created_at, userLocations, lastLogin FROM userConfig";
 $result = $conn->query($sql);
 
 echo "<table>";
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "username: " . $row["uname"]. " Password: " . $row["password"]. " Creation date: " . $row["creationdate"]. " Experation date: " . $row["experationdate"]. "<br>";
+    echo " ID: " . $row["id"]. " Username: " . $row["username"]. " Email: " . $row["email"]. " Created At: " . $row["created_at"]. " User Locations: " . $row["userLocations"]. " Last Login: " . $row["lastLogin"]. "<br>";
   }
 } else {
   echo "0 results";
