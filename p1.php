@@ -5,15 +5,41 @@
 
 
 <body>
-<h1> User Database1</h1>
+<h1> User Database</h1>
 
+<h3> Adding data to User_data table. Enter Username, Password, account creation date, and epiration date. </h3>
+<form action="insert.php" method="post">
+  <table>
+    <tr>
+      <td>Username:</td>
+      <td><input type="text" name="uname_data" id="uname_data" ></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><input type="text" name="pass_data" id="pass_data" ></td>
+    </tr>
+    <tr>
+      <td>Creation Date:</td>
+      <td><input type="text" name="cdate_data" id="cdate_data" ></td>
+    </tr>
+	<tr>
+      <td>Expiration Date:</td>
+      <td><input type="text" name="edate_data" id="edate_data" ></td>
+    </tr>
+    <tr>
+      <td><input name="submitBtn" type="submit" id="submitBtn"
+		value="Submit">
+      </td>
+    </tr>
+  </table>
+</form>
 
 
 <?php
 //variables
-$servername = "orion.cs.unh.edu";
-$username = "la1060";
-$password = "Sem=guHp7u";
+$servername = "localhost";
+$username = "webedit";
+$password = "343Vpnedittable";
 $database_in_use = "user_db";
 
 // Create connection
@@ -23,21 +49,27 @@ $conn = new mysqli($servername, $username, $password, $database_in_use);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
+echo "Connected successfully". "<br>";
+?>
 
 
-//$sql = "SELECT uname, creationdate, expirationdate, password FROM user_info";
-//$result = $mysqli->query($sql);
+<?php
+//displays current values in table
+$sql = "SELECT uname, creationdate, experationdate, password FROM user_info";
+$result = $conn->query($sql);
 
-//if ($result->num_rows > 0) {
+echo "<table>";
+if ($result->num_rows > 0) {
   // output data of each row
-  //while($row = $result->fetch_assoc()) {
-    //echo "username: " . $row["uname"]. " creation date: " . $row["creationdate"]. " experation date " . $row["experationdate"]. " Password: " . $row["password"] . "<br>";
-  //}
-//} else {
-  //echo "0 results";
-//}
-//$mysqli->close();
+  while($row = $result->fetch_assoc()) {
+    echo "username: " . $row["uname"]. " Password: " . $row["password"]. " Creation date: " . $row["creationdate"]. " Experation date: " . $row["experationdate"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+echo "</table>";
+
+$conn->close();
 ?>
 
 </body>
